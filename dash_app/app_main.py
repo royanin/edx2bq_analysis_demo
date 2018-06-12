@@ -180,9 +180,6 @@ def return_user( clickData ):
     Input('tabs', 'value'),
     ])
 def highlight_user( user_dropdown_value, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output ):
-    #print 'flask session:',flask.session
-    #print 'flask session:',flask.session['check']    
-    #print 'dataset_type:',flask.session['dataset_type']
     print 'user_dropdown_value',user_dropdown_value
     scatter_plot = scatter_plot_2d(user_dropdown_value, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output )
     return scatter_plot
