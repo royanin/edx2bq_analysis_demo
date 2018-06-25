@@ -123,11 +123,7 @@ layout = dhc.Div([
                       #figure=SIDE_PLOT 
                      ),            
             
-            #dcc.Graph(id='donut-graph', 
-            #          style=dict(height='300px'),
-            #          #figure=SIDE_PLOT 
-            #         ),
-            
+
             dcc.Graph(id='bar-chart',
                      style=dict(height='300px'),
                      #figure=BAR_CHART
@@ -146,7 +142,27 @@ layout = dhc.Div([
         dcc.Graph(id='timeseries-graph', 
                   #figure=TIMESERIES 
                  )
-    ])
+    ]),
+    
+    dhc.Div(children=[
+        dhc.Hr(),
+        dhc.H4( children=[dhc.A('Code ',href='https://github.com/royanin/edx2bq_analysis_demo',
+                            target="_blank"),
+                          dhc.Span(" | "),
+                            dhc.A('Contact ',href='mailto:anindyar@mit.edu?Subject=About%20edx2bq_analysis_demo',
+                        target="_blank")]),
+        dhc.P(children=[
+            dhc.Span("Best way to find out what different quantities mean is to look through the "),
+            dhc.A(' edx2BigQuery repository',href='https://github.com/mitodl/edx2bigquery',
+                        target="_blank"),
+        ]),
+        dhc.P(children=[     
+            dhc.A('More', href='http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/', target="_blank"),            
+            dhc.Span(" on edx internal tracking log definitions and such."),
+        ]),        
+        dhc.Br(),
+        dhc.Br(),        
+    ])    
             
 ], className = 'container')
 
@@ -191,15 +207,6 @@ def user_horizontal_barchart( user_dropdown_value ):
     print 'user_dropdown_value',user_dropdown_value
     hor_barchart = horizontal_barchart( user_dropdown_value )
     return hor_barchart
-"""
-@app.callback( 
-    Output('donut-graph', 'figure'),
-    [Input('user_dropdown', 'value')])
-def user_donuts( user_dropdown_value ):
-    print 'user_dropdown_value',user_dropdown_value
-    donut = simple_donut( user_dropdown_value )
-    return donut
-"""
 
 
 @app.callback( 
