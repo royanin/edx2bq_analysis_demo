@@ -2,6 +2,8 @@
 
 Many courses running on the [edx platform](https://www.edx.org/course) have their student learning data processed using the code [edx2bigquery](https://github.com/mitodl/edx2bigquery), and stored in [Google Bigquery](https://bigquery.cloud.google.com/). This repository is a demonstration of how the data stored in BigQuery could be presented on an interactive dashboard that could allow instructors and researchers to visualize and analyze student learning data.
 
+A secondary goal of this repo is to generate discussions about what learning-analytics quantities are easily available on the edX platform, and how instructors/researchers could use such quantities to improve/study student learning.
+
 ## Getting Started
 
 If you just want to play with the demo, go to [http://198.199.87.145/demo](http://198.199.87.145/demo).

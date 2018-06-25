@@ -160,6 +160,7 @@ layout = dhc.Div([
             dhc.A('More', href='http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/', target="_blank"),            
             dhc.Span(" on edx internal tracking log definitions and such."),
         ]),        
+        dhc.P("A secondary goal of this demo is to generate discussions about what learning-analytics quantities are easily available on the edX platform, and how instructors/researchers could use such quantities to improve/study student learning."),
         dhc.Br(),
         dhc.Br(),        
     ])    
@@ -171,17 +172,14 @@ layout = dhc.Div([
     Output('user_dropdown', 'value'),
     [Input('clickable-graph', 'clickData')])
 def return_user( clickData ):
-    print '\n\n clickdata: ',clickData
     if clickData is not None:
         if 'points' in clickData:    
             firstPoint = clickData['points'][0]
             if 'pointNumber' in firstPoint:
                 point_number = firstPoint['pointNumber']
-                print 'point_number',point_number
                 if point_number == 0:
                     user_name = STARTING_USER
                 else:
-                    print 'username directly from clickData', clickData['points'][0]['text']
                     user_name = int(clickData['points'][0]['text'])
                 return user_name
 
@@ -196,7 +194,6 @@ def return_user( clickData ):
     Input('tabs', 'value'),
     ])
 def highlight_user( user_dropdown_value, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output ):
-    print 'user_dropdown_value',user_dropdown_value
     scatter_plot = scatter_plot_2d(user_dropdown_value, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output )
     return scatter_plot
 
@@ -204,7 +201,6 @@ def highlight_user( user_dropdown_value, xaxis_col, xaxis_type, yaxis_col, yaxis
     Output('horizontal_barchart_graph', 'figure'),
     [Input('user_dropdown', 'value')])
 def user_horizontal_barchart( user_dropdown_value ):
-    print 'user_dropdown_value',user_dropdown_value
     hor_barchart = horizontal_barchart( user_dropdown_value )
     return hor_barchart
 

@@ -26,10 +26,8 @@ def scatter_plot_2d(uid, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output
         )]
     
     if uid is not None:
-        print("userID: ", uid)
         row = df.loc[df['user_id']==int(uid)]
     else:
-        print("No dropdown value")        
         row = df.loc[df['user_id']==STARTING_USER]        
 
     trace_selected = go.Scatter(
@@ -64,7 +62,7 @@ def scatter_plot_2d(uid, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output
                 'title': ycol_mod,                
                 'type': 'linear' if yaxis_type == 'linear' else 'log'
             },
-            margin={'l': 40, 'b': 40, 't': 0, 'r': 0},
+            margin={'l': 80, 'b': 40, 't': 0, 'r': 0},
             hovermode='closest'
         )
     }    
@@ -76,16 +74,12 @@ def horizontal_barchart(uid):
     current_user = user.groupby('user_id').sum().reset_index()
     
     attempted = float(current_user.n_attempted)
-    
-    print current_user.n_attempted
 
-    print 'in horizontal_barchart'
     incorrect = int(current_user.n_attempted[0] - current_user.n_partial[0])
     partially_correct = int(current_user.n_partial[0]  - current_user.n_perfect[0])
     correct = int(current_user.n_perfect[0])
     
-    print 'incorrect, partially_correct, correct',incorrect, partially_correct, correct
-    print 'figure out which is what: attempted, partial, perfect', current_user.n_attempted[0], current_user.n_partial[0], current_user.n_perfect[0]
+    current_user.n_partial[0], current_user.n_perfect[0]
 
     marker1 = dict(colors=['rgba(163, 203, 56, 1)','rgba(18, 137, 167, 1)','rgba(87, 88, 187, 1)'])    
     
@@ -94,9 +88,7 @@ def horizontal_barchart(uid):
     x_incorrect = [incorrect, avg_incorrect]
     x_part_correct = [partially_correct, avg_partially_correct]
     x_correct = [correct, avg_correct]
-    
-    #marker_user = dict(color=['rgba(87, 88, 187, 1)','rgba(18, 137, 167, 1)','rgba(163, 203, 56, 1)'])
-    #marker_avg = dict(color=['rgba(87, 88, 187, 0.5)','rgba(18, 137, 167, 0.5)','rgba(163, 203, 56, 0.5)'])    
+   
     marker_correct = dict(color=['rgba(87, 88, 187, 1)', 'rgba(87, 88, 187, 0.5)'])
     marker_incorrect = dict(color=['rgba(163, 203, 56, 1)','rgba(163, 203, 56, 0.5)'])    
     marker_partially_correct = dict(color=['rgba(18, 137, 167, 1)','rgba(18, 137, 167, 0.5)'])
@@ -127,11 +119,9 @@ def horizontal_barchart(uid):
     )    
     
     data = [trace_correct, trace_partially_correct, trace_incorrect]
-    #print data
+
     layout = go.Layout(
-    #xaxis=dict(
-    #    range=[0, max_attempt]
-    #),
+
     xaxis=dict(
         range=[0, max_attempt],
         tickfont=dict(
@@ -148,8 +138,6 @@ def barchart(uid):
     current_user = user.groupby('user_id').sum().reset_index()
     
     attempted = float(current_user.n_attempted)
-    
-    print current_user.n_attempted
 
     incorrect = float(current_user.n_attempted) - float(current_user.n_partial)
     partially_correct = float(current_user.n_partial) - float(current_user.n_perfect)
@@ -206,7 +194,6 @@ def barchart(uid):
 
 def update(uid):
     uname = user_dict[uid][1:]
-    print 'uname',uname
     user = pcd[pcd.username==uname]
     user_total = user.groupby('date').sum().reset_index()
     user_total.loc[:,('date')] = pd.to_datetime(user_total['date'])
