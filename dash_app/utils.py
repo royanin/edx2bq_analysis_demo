@@ -4,6 +4,10 @@ from config import df, pcd, sasby, avg_user, avg_attempted, avg_incorrect, avg_p
 import plotly
 import plotly.graph_objs as go
 
+from datetime import datetime, tzinfo #as dt
+import dateutil.parser as du
+import pytz
+
 def scatter_plot_2d(uid, xaxis_col, xaxis_type, yaxis_col, yaxis_type,tab_output ):
     if tab_output == 1:
         xcol_mod = xaxis_col
@@ -280,5 +284,17 @@ def update(uid):
     
     return dict(data = data, layout = layout)
 
+def datetime_to_json(dt_obj):
+    if isinstance(dt_obj, datetime):
+        return dt_obj.__str__()    
+    
+def get_datetime(_date,_hh, _mm, _ss,tz_supplied):
+    #tz_supplied = pytz.
+    _yr = int(_date.split('-')[0])
+    _mo = int(_date.split('-')[1])
+    _dd = int(_date.split('-')[2])
+    #start_dt = datetime(start_yr,start_mo,start_dd, start_hh, start_mm, start_ss)
+    ret_dt = datetime(_yr,_mo,_dd, _hh, _mm, _ss)
+    return tz_supplied.localize(ret_dt)
 
 

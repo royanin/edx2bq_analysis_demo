@@ -10,7 +10,7 @@ from flask import session
 
 
 from app import app
-from dash_app import app_main
+from dash_app import app_main, chksubtime
 
 print(dcc.__version__) # 0.6.0 or above is required
 
@@ -37,6 +37,9 @@ def display_page(pathname):
     
     if pathname == '/demo':
         return app_main.layout
+
+    elif pathname == '/chksubtime':
+        return chksubtime.layout    
 
     else:
         return '404'

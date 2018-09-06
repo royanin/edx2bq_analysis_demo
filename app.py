@@ -3,7 +3,7 @@ import os
 import flask
 from flask_app import flask_app
 
-app = Dash('app', server=flask_app, url_base_pathname='/demo')
+app = Dash('app', server=flask_app, url_base_pathname='/')
 app.config.suppress_callback_exceptions = True
 app.scripts.config.serve_locally = False
 
